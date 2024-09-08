@@ -49,7 +49,7 @@ export class EmployeeService {
   deletePosition(position_id:any){
     return this.http.delete(this.URL+"position/delete/" + position_id)
   }
-
+  
   addPosition(PositionDetail:any){
     return this.http.post(this.URL+"position/add", PositionDetail)
   }
