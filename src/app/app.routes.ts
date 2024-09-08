@@ -1,4 +1,5 @@
-import { Routes } from '@angular/router';
+import { RouterModule,Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { EmployeelistComponent } from './employee-list/employeelist.component';
 import { EmployeeAddComponent } from './employee-add/employee-add.component';
 import { EmployeeUpdateComponent } from './employee-update/employee-update.component';
@@ -8,14 +9,30 @@ import { PositionUpdateComponent } from './position-update/position-update.compo
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
 
+
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'login', component: LoginComponent },
-  { path: 'empList', component: EmployeelistComponent },
-  { path: 'empAdd', component: EmployeeAddComponent },
-  { path: 'empUpdate/:employee_id', component: EmployeeUpdateComponent },
-  { path: 'pstList', component: PositionListComponent },
-  { path: 'pstAdd', component: PositionAddComponent },
-  { path: 'pstUpdate/:position_id', component: PositionUpdateComponent },
-  { path: 'welcome', component: WelcomeComponent },
+  {
+    path: '',
+    canActivate: [],
+    children: [
+      { path: '', pathMatch: 'full', redirectTo: '/login' },
+      { path: 'login', component: LoginComponent },
+      { path: 'empList', component: EmployeelistComponent },
+      { path: 'empAdd', component: EmployeeAddComponent },
+      { path: 'empUpdate/:employee_id', component: EmployeeUpdateComponent },
+      { path: 'pstList', component: PositionListComponent },
+      { path: 'pstAdd', component: PositionAddComponent },
+      { path: 'pstUpdate/:position_id', component: PositionUpdateComponent },
+      { path: 'welcome', component: WelcomeComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+    ]
+  },
+  { path: '**', redirectTo: 'login' } 
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}

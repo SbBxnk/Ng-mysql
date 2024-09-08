@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   submitForm(): void {
     if (this.loginForm.valid) {
       const { userName, password } = this.loginForm.value;
-      this.userService.LoginUser(userName, password).subscribe(
+      this.userService.loginUser(userName, password).subscribe(
         (response: any) => {
           const token = response.token;
           localStorage.setItem('authToken', token);

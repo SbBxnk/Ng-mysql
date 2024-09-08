@@ -13,10 +13,9 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-employeelist',
   standalone: true,
-  imports: [CommonModule,MatTableModule,MatPaginatorModule,RouterLink,
-    RouterLinkActive,NzButtonModule,NzCardComponent,NzIconModule],
+  imports: [CommonModule, MatTableModule, MatPaginatorModule, RouterLink, RouterLinkActive, NzButtonModule, NzCardComponent, NzIconModule],
   templateUrl: './employeelist.component.html',
-  styleUrl: './employeelist.component.css',
+  styleUrls: ['./employeelist.component.css'],
 })
 
 export class EmployeelistComponent implements AfterViewInit {
@@ -31,7 +30,7 @@ export class EmployeelistComponent implements AfterViewInit {
     'actions',
   ];
   dataSource = new MatTableDataSource<Employee>([]);
-  totalEmployees: number = 0; 
+  totalEmployees: number = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -46,12 +45,17 @@ export class EmployeelistComponent implements AfterViewInit {
   getData() {
     this._employee.getAllEmployee().subscribe({
       next: (resp: any) => {
-        console.log(resp); 
-        this.dataSource.data = resp.data;
-        this.totalEmployees = resp.data.length; 
+        console.log('Response from getAllEmployee:', resp);
+        // ตรวจสอบว่า resp.data มีข้อมูลที่คาดหวัง
+        if (resp && resp.data) {
+          this.dataSource.data = resp.data;
+          this.totalEmployees = resp.data.length;
+        } else {
+          console.error('No data found in response');
+        }
       },
       error: (err) => {
-        console.log(err);
+        console.log('Error fetching data:', err);
       },
     });
   }
@@ -61,7 +65,6 @@ export class EmployeelistComponent implements AfterViewInit {
       title: 'คุณแน่ใจใช่ไหม?',
       text: "คุณจะไม่สามารถดำเนินการย้นกลับได้ถ้าคุณลบ",
       icon: 'warning',
-
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
@@ -72,7 +75,6 @@ export class EmployeelistComponent implements AfterViewInit {
         this._employee.deleteEmployee(employee_id).subscribe({
           next: (resp) => {
             console.log(resp);
-            console.log(employee_id);
             this.getData();
             Swal.fire({
               icon: 'success',
@@ -89,7 +91,6 @@ export class EmployeelistComponent implements AfterViewInit {
     });
   }
 }
-
 
 export interface Employee {
   employee_id: string;
