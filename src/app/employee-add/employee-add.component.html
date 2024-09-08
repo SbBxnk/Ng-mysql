@@ -1,0 +1,58 @@
+<div class="container">
+    <nz-card [nzTitle]="cardTitle" class="border-2 border-light-subtle">
+        <ng-template #cardTitle>
+            <div style="font-size: 30px;" class="text-center py-0 fw-bold  text-primary">{{title}}</div>
+        </ng-template>
+      <form [formGroup]="employeeForm" (ngSubmit)="submit()">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <label class="form-label fs-6 text-primary">รหัสพนักงาน</label>
+              <input type="text" nz-input placeholder="กรุณาป้อนรหัสพนักงาน" formControlName="employee_id" required>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <label class="form-label fs-6 text-primary">ชื่อพนักงาน</label>
+              <input type="text" nz-input placeholder="กรุณาป้อนชื่อพนักงาน" formControlName="employee_name">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <label class="form-label fs-6 text-primary">ตำแหน่งพนักงาน</label>
+              <nz-select nzShowSearch nzAllowClear nzPlaceHolder="กรุณาเลือกตำแหน่ง" formControlName="position_id">
+                <nz-option *ngFor="let position of positions" 
+                            [nzLabel]="position.position_id+' - '+position.position_name" 
+                            [nzValue]="position.position_id">
+                </nz-option>
+              </nz-select>
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <label class="form-label fs-6 text-primary">เงินเดือน</label>
+              <input type="text" nz-input placeholder="กรุณาป้อนเงินเดือน" formControlName="salary">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <label class="form-label fs-6 text-primary">ที่อยู่</label>
+              <input type="text" nz-input placeholder="กรุณาป้อนที่อยู่" formControlName="address">
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <label class="form-label fs-6 text-primary">เบอร์มือถือ</label>
+              <input type="number" nz-input placeholder="กรุณาป้อนเบอร์มือถือ" formControlName="phone_number">
+            </div>
+          </div>
+        </div>
+        <button nz-button nzType="primary" type="submit" class="float-end">เพิ่ม</button>
+      </form>
+    </nz-card>
+  </div>
+  

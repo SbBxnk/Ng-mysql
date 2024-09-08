@@ -1,0 +1,39 @@
+<div class="container">
+    <nz-card [nzTitle]="cardTitle" class="border-2 border-light-subtle py-0">
+        <ng-template #cardTitle>
+            <div class="d-flex justify-content-start align-items-center">
+                <div style="font-size: 30px;" class="text-center fw-bold badge text-bg-primary text-wrap py-1">
+                    {{title}}
+                </div>
+            </div>
+        </ng-template>
+        <nz-layout class="dashboard-layout">
+            <nz-content>
+                <div class="cardBox">
+                    <a routerLink="/empList">
+                        <div class="card">
+                            <div class="card-detail">
+                                <div class="numbers">{{totalEmployees}}</div>
+                                <div class="iconBx">
+                                    <span nz-icon nzType="team" nzTheme="outline"></span>
+                                </div>
+                            </div>
+                            <div class="cardName">พนักงาน</div>
+                        </div>
+                    </a>
+                    <a routerLink="/pstList">
+                        <div class="card">
+                            <div class="card-detail">
+                                <div class="numbers">{{totalPositions}}</div>
+                                <div class="iconBx">
+                                    <span nz-icon nzType="tool" nzTheme="outline"></span>
+                                </div>
+                            </div>
+                            <div class="cardName">ตำแหน่ง</div>
+                        </div>
+                    </a>
+                </div>
+            </nz-content>
+        </nz-layout>
+    </nz-card>
+</div>

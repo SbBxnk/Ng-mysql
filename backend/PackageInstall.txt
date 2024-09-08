@@ -1,0 +1,8 @@
+npm init //สร้างไฟล์ package.js
+npm i express //สร้างสภาพแวดล้อม
+npm i mysql //สร้างการเชื่อมต่อฐานข้อมูลที่เป็น MySQL
+npm i cors //ใช้สร้าง path เพื่อส่งข้อมูลไปยังหน้าบ้าน
+npm i body-parser //ใช้อ่านไฟล์ฐานข้อมูลเป็น JSon
+npm i nodemon //สร้าง node Server เพื่อรันการทำงานอัตโนมัตเมื่อมีการเขียนโค้ด
+npm i morgan //สร้าง การอ่าน request ที่สั่งผ่านพารามิเตอร์
+npm i dotenv //สร้างเพื่อใช้รันคำสั่งแบบย่อ

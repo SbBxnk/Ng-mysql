@@ -1,0 +1,121 @@
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EmployeeService } from '../service/employee.service';
+import { NzCardComponent } from 'ng-zorro-antd/card';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzButtonComponent } from 'ng-zorro-antd/button';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
+import { Router, ActivatedRoute } from '@angular/router';
+
+@Component({
+  selector: 'app-employee-update',
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NzCardComponent, NzInputModule, NzButtonComponent, NzSelectModule],
+  templateUrl: './employee-update.component.html',
+  styleUrl: './employee-update.component.css'
+})
+export class EmployeeUpdateComponent implements OnInit {
+  title: string = 'แก้ไขข้อมูลพนักงาน';
+  UpdateEmployeeForm: FormGroup;
+  positions: any[] = [];
+
+  constructor(
+    private _employee: EmployeeService,
+    private _actRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    this.UpdateEmployeeForm = new FormGroup({
+      employee_id: new FormControl({value: '', disabled: true}),
+      employee_name: new FormControl(''),
+      position_id: new FormControl(''),
+      salary: new FormControl(''),
+      address: new FormControl(''),
+      phone_number: new FormControl(''),
+    });
+  }
+
+  ngOnInit(): void {
+    this.loadPositions();
+    const employeeId = this._actRoute.snapshot.paramMap.get('employee_id');
+    if (employeeId) {
+      this.getData(employeeId);
+    } else {
+      console.error('No employee ID provided');
+      Swal.fire('Error', 'No employee ID provided', 'error');
+    }
+  }
+
+  loadPositions(): void {
+    this._employee.getAllPositions().subscribe({
+      next: (resp: any) => {
+        if (resp && resp.data) {
+          this.positions = resp.data;
+        } else {
+          console.error('Failed to load positions');
+          Swal.fire('Error', 'Failed to load positions', 'error');
+        }
+      },
+      error: (err) => {
+        console.error('Error loading positions:', err);
+        Swal.fire('Error', 'Failed to load positions', 'error');
+      }
+    });
+  }
+
+  getData(employeeId: string): void {
+    this._employee.getOneEmployee(employeeId).subscribe({
+      next: (resp: any) => {
+        console.log('API Response:', resp);
+        if (resp) {
+          this.UpdateEmployeeForm.patchValue({
+            employee_id: resp.employee_id || '',
+            employee_name: resp.employee_name || '',
+            position_id: resp.position_id || '',
+            salary: resp.salary || '',
+            address: resp.address || '',
+            phone_number: resp.phone_number || '',
+          });
+        } else {
+          console.error('Invalid employee data received:', resp);
+          Swal.fire('Error', 'Failed to load employee data', 'error');
+        }
+      },
+      error: (err) => {
+        console.error('Error fetching employee data:', err);
+        Swal.fire('Error', 'Failed to load employee data', 'error');
+      }
+    });
+  }
+
+  onSubmit(): void {
+    if (this.UpdateEmployeeForm.valid) {
+      const employeeId = this.UpdateEmployeeForm.get('employee_id')?.value;
+      const employeeDetails = {
+        employee_name: this.UpdateEmployeeForm.get('employee_name')?.value,
+        position_id: this.UpdateEmployeeForm.get('position_id')?.value,
+        salary: this.UpdateEmployeeForm.get('salary')?.value,
+        address: this.UpdateEmployeeForm.get('address')?.value,
+        phone_number: this.UpdateEmployeeForm.get('phone_number')?.value,
+      };
+
+      this._employee.updateEmployee(employeeId, employeeDetails).subscribe({
+        next: (resp: any) => {
+          if (resp && resp.success) {
+            Swal.fire('Success', 'Employee updated successfully', 'success');
+            this.router.navigate(['/employees'], { replaceUrl: true });
+          } else {
+            Swal.fire('Error', 'Failed to update employee', 'error');
+          }
+        },
+        error: (err) => {
+          console.error('Error updating employee:', err);
+          Swal.fire('Error', 'Failed to update employee', 'error');
+        }
+      });
+    } else {
+      Swal.fire('Error', 'Please fill all required fields correctly', 'error');
+    }
+  }
+}

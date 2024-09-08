@@ -1,0 +1,9 @@
+.form-label {
+    margin-bottom: .5rem;
+    display: block;
+  }
+  
+  input[nz-input], nz-select {
+    width: 100%;
+  }
+

@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+
+
+td,th,h1{
+    font-family:  'Kanit', sans-serif ; 
+}
+th{
+  font-weight: bold;
+}
+table {
+    width: 100%;
+  }
+
+  td{
+    height: 3.5rem;
+  }
+  th{
+    border-bottom: 1px solid;
+  }
+  #column_id{
+    width: 12%;
+  }
+
+  #column_name{
+    width: 20%;
+  }
+
+  #column_position_id{
+    width: 15%;
+  }
+
+  #column_salary{
+    width: 10%;
+  }
+
+  #column_address{
+    width: 25%;
+  }
+
+  #column_phone_number{
+    width: 10%;
+  }
+
+  #column_actions{
+    width: 20%;
+  }
+  .nz-btn {
+    background: linear-gradient(135deg, #6253E1, #04BEFE); 
+    color: #ffffff;
+    border: none; 
+    transition: color 0.1s;
+  }
+  .nz-btn:hover {
+    background: transparent; 
+    color: #03a9f4;
+    border: solid 1px;
+  }
+
+.btn-edit{
+  color: #ffffff;
+  background-color: #ffaa00;
+  border: none;
+}
+
+.btn-edit:hover{
+  opacity: 0.8;
+}

@@ -1,0 +1,54 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar sticky-top" nzCollapsible nzWidth="256px" nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a routerLink="/welcome" routerLinkActive="active" ariaCurrentWhenActive="page">
+        <img src="http://chayakorn-it.000.pe/images/Clogo.png" alt="logo">
+        <h1 class="text-light">HAYAKORN</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="light" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+
+      <li nz-menu-item nzMatchRouter >
+          <span nz-icon nzType="bar-chart" nzTheme="outline"></span>
+          <a routerLink="/welcome" class="mx-2">แดซบอร์ด</a>
+      </li>
+
+      <li nz-submenu nzTitle="จัดการข้อมูลพนักงาน" nzIcon="solution">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/empList">ตารางพนักงาน</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/empAdd">เพิ่มพนักงาน</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="จัดการตำแหน่งงาน" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/pstList">ตำแหน่งงาน</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/pstAdd">เพิ่มตำแหน่ง</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></span>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
+

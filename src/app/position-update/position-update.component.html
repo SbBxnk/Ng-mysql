@@ -1,0 +1,39 @@
+<div class="container">
+    <nz-card [nzTitle]="cardTitle" class="border-2 border-light-subtle">
+        <ng-template #cardTitle>
+            <div style="font-size: 30px;" class="text-center py-0 fw-bold  text-primary">{{title}}</div>
+        </ng-template>
+      <form [formGroup]="UpdatePositionForm" (ngSubmit)="submit()">
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <label class="form-label fs-6 text-primary">รหัสตำแหน่ง</label>
+              <input type="text" nz-input placeholder="กรุณาป้อนรหัสตำแหน่ง" formControlName="position_id">
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <label class="form-label fs-6 text-primary">ชื่อพตำแหน่ง</label>
+              <input type="text" nz-input placeholder="กรุณาป้อนชื่อตำแหน่ง" formControlName="position_name">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <label class="form-label fs-6 text-primary">เงินเดือน</label>
+              <input type="text" nz-input placeholder="กรุณาป้อนเงินเดือน" formControlName="salary">
+            </div>
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="mb-3">
+              <label class="form-label fs-6 text-primary">เบอร์มือถือ</label>
+              <input type="number" nz-input placeholder="กรุณาป้อนเบอร์มือถือ" formControlName="phone_number">
+            </div>
+          </div>
+        </div>
+        <button nz-button nzType="primary" type="submit" class="float-end">ตกลง</button>
+      </form>
+    </nz-card>
+  </div>
+  
