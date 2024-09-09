@@ -1,4 +1,4 @@
-<nz-layout class="app-layout">
+<nz-layout class="app-layout" *ngIf="submitForm(); else loginPage">
   <nz-sider class="menu-sidebar sticky-top" nzCollapsible nzWidth="256px" nzBreakpoint="md"
     [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="sidebar-logo">
@@ -34,6 +34,8 @@
           </li>
         </ul>
       </li>
+      <button nz-button nzType="primary" (click)="logout()">Login</button>
+
     </ul>
   </nz-sider>
   <nz-layout>
@@ -52,3 +54,8 @@
   </nz-layout>
 </nz-layout>
 
+
+
+<ng-template #loginPage>
+  <router-outlet></router-outlet> <!-- หน้าที่จะใช้แสดงหน้า Login -->
+</ng-template>

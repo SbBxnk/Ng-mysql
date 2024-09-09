@@ -38,12 +38,12 @@ export class LoginComponent implements OnInit {
         (response: any) => {
           const token = response.token;
           localStorage.setItem('authToken', token);
-          this.router.navigate(['/empList']);
+          this.router.navigate(['/welcome']); 
         },
         error => {
           console.error('Login failed', error);
         }
-      )
+      );
     }
   }
 }

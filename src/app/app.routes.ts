@@ -8,15 +8,18 @@ import { PositionAddComponent } from './position-add/position-add.component';
 import { PositionUpdateComponent } from './position-update/position-update.component';
 import { WelcomeComponent } from './pages/welcome/welcome.component';
 import { LoginComponent } from './login/login.component';
+import { AppComponent } from './app.component';
+import { AuthGuard } from './auth.guard';
 
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: '',
-    canActivate: [],
+    canActivate: [AuthGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: '/login' },
+      // { path: '', component: AppComponent, canActivate: [AuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'empList', component: EmployeelistComponent },
       { path: 'empAdd', component: EmployeeAddComponent },
@@ -25,7 +28,6 @@ export const routes: Routes = [
       { path: 'pstAdd', component: PositionAddComponent },
       { path: 'pstUpdate/:position_id', component: PositionUpdateComponent },
       { path: 'welcome', component: WelcomeComponent },
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   },
   { path: '**', redirectTo: 'login' } 
