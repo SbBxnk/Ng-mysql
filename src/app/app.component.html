@@ -34,7 +34,10 @@
           </li>
         </ul>
       </li>
-      <button nz-button nzType="primary" (click)="logout()">Login</button>
+      <li nz-menu-item nzMatchRouter class="text-danger">
+        <span nz-icon nzType="bar-chart" nzTheme="outline"></span>
+        <a class="mx-2 text-danger" (click)="logout()">Login</a>
+    </li>
 
     </ul>
   </nz-sider>
@@ -57,5 +60,5 @@
 
 
 <ng-template #loginPage>
-  <router-outlet></router-outlet> <!-- หน้าที่จะใช้แสดงหน้า Login -->
+  <router-outlet></router-outlet> 
 </ng-template>

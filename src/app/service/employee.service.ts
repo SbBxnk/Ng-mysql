@@ -38,7 +38,7 @@ export class EmployeeService {
   }
 
   getAllPositions(): Observable<any> {
-    return this.http.get(this.URL + "position", { headers: this.getHeaders() });
+    return this.http.get(this.URL + "position",{ headers: this.getHeaders() });
   }
 
 
@@ -46,16 +46,16 @@ export class EmployeeService {
     return this.http.get(this.URL + "position/" + position_id, { headers: this.getHeaders() } );
   } 
   
-  deletePosition(position_id:any){
-    return this.http.delete(this.URL+"position/delete/" + position_id)
+  deletePosition(position_id:any): Observable<any>{
+    return this.http.delete(this.URL+"position/delete/" + position_id ,{ headers: this.getHeaders() })
   }
   
-  addPosition(PositionDetail:any){
-    return this.http.post(this.URL+"position/add", PositionDetail)
+  addPosition(PositionDetail:any): Observable<any>{
+    return this.http.post(this.URL+"position/add", PositionDetail, { headers: this.getHeaders() })
   }
 
-  updatePosition(position_id: any, PositionDetail: any) {
-    return this.http.put(this.URL+"position/update/" +position_id ,PositionDetail)
+  updatePosition(position_id: any, PositionDetail: any) :Observable<any>{
+    return this.http.put(this.URL+"position/update/" +position_id ,PositionDetail,{ headers: this.getHeaders() })
   }
 
 
