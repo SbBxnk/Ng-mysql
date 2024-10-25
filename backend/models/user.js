@@ -1,6 +1,6 @@
 const db = require('../connectDB')()
 
-const User = {
+const Login = {
 
     getAllUser: (callback) => {
         const sql = "SELECT * FROM tb_user";
@@ -27,4 +27,4 @@ const User = {
     
 
 
-module.exports = User
+module.exports = Login

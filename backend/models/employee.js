@@ -1,5 +1,3 @@
-const { deleteEmployee } = require('../Controller/employeeController');
-
 const db = require('../connectDB')();
 
 const Employee = {

@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const { getAllEmployee, getOneEmployee,addEmployee,updateEmployee,deleteEmployee,getTotalEmployee  } = require('../Controller/employeeController')
-const { getAllPositions, addPosition,getOnePosition,deletePosition,updatePosition } = require('../Controller/positionController')
 const {auth} = require('../middleware/auth')
 // http://localhost:3000/api/
 router.get('/employee', auth,getAllEmployee) //read

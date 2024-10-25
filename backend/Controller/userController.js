@@ -4,7 +4,6 @@ require('dotenv').config();
 const TOKEN = process.env.ACCESS_TOKEN;
 const EMAIL = process.env.FORGOT_EMAIL;
 const PASSWORD = process.env.FORGOT_PASSWORD;
-const nodemailer = require('nodemailer')
 const bcrypt = require('bcrypt')
 
 

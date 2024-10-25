@@ -2,6 +2,7 @@ const express = require('express');
 const { readdirSync } = require('fs');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+
 const cors = require('cors');
 const connectDB = require('./connectDB'); 
 require('dotenv').config();
